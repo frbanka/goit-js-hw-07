@@ -27,15 +27,15 @@ function openImage(e) {
   const instance = basicLightbox.create(
     `<img src="${e.target.dataset.source}" width="800" height="600">`,
     {
-      open: () => window.addEventListener("keydown", escExit),
-      close: () => window.removeEventListener("keydown", escExit),
+      onShow: () => window.addEventListener("keydown", escExit),
+      onClose: () => window.removeEventListener("keydown", escExit),
     }
   );
   instance.show();
 
   function escExit(e) {
     if (e.code === "Escape") {
-      modal.close();
+      instance.close();
     }
   }
 }
